@@ -4,7 +4,13 @@ Install Apache Spark
 
 Usage
 -----
-```json
+Vagrantfile
+```
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    chef.cookbooks_path = "cookbooks"
+    chef.add_recipe "java::default"
+    chef.add_recipe "spark::default"
     chef.json = {
         "spark" => {
             "git_repository" => "https://github.com/apache/spark.git",
@@ -18,5 +24,6 @@ Usage
             "workers" => [ "localhost" ]
         }
     }
+  end
 ```
 
